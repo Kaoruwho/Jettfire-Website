@@ -41,7 +41,7 @@
     .navlinks a:hover { color: white; }
     .nav-cta { padding: 12px 15px; background: var(--red); border-radius: 6px; color: white !important; }
     .menu-toggle { display: none; background: none; border: 0; color: white; font-size: 25px; cursor: pointer; }
-    .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; min-height: 620px; align-items: center; gap: 48px; padding-top: 48px; padding-bottom: 48px; }
+    .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; min-height: 510px; align-items: center; }
     .hero-copy { position: relative; z-index: 2; padding: 24px 0; }
     .hero .eyebrow { color: #454545; }
     h1, h2, h3, p { margin-top: 0; }
