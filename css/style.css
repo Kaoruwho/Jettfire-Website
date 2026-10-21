@@ -1302,7 +1302,6 @@ footer::before {
 .footer-description {
   display: flex;
   justify-content: flex-end;
-  margin-right: -30px;
 }
 
 .footer-description p {
