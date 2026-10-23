@@ -154,23 +154,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-const quoteForm = document.getElementById("quoteForm");
-const formStatus = document.getElementById("formStatus");
+/* =====================================
+   JETTFIRE QUOTATION FORM - WEB3FORMS
+===================================== */
 
-if (quoteForm && formStatus) {
+const quoteForm = document.getElementById("quoteForm");
+
+if (quoteForm) {
+  const submitButton = quoteForm.querySelector(
+    'button[type="submit"]'
+  );
+
+  const statusElement =
+    quoteForm.querySelector(".form-status") ||
+    document.getElementById("formStatus");
+
   quoteForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const submitButton = quoteForm.querySelector(
-      'button[type="submit"]'
-    );
+    if (!quoteForm.reportValidity()) return;
 
-    // Prevent duplicate submissions
     submitButton.disabled = true;
-    submitButton.textContent = "Sending request...";
 
-    formStatus.textContent = "";
-    formStatus.className = "form-status";
+    if (statusElement) {
+      statusElement.textContent = "Sending your quotation request...";
+    }
 
     try {
       const response = await fetch(quoteForm.action, {
@@ -181,31 +189,29 @@ if (quoteForm && formStatus) {
         }
       });
 
-      if (response.ok) {
-        formStatus.textContent =
-          "Your quotation request has been sent successfully! " +
-          "Our team will review your inquiry.";
+      const result = await response.json();
 
-        formStatus.classList.add("success");
-
-        quoteForm.reset();
-      } else {
-        throw new Error("Form submission failed.");
+      if (!response.ok || result.success !== true) {
+        throw new Error(result.message || "Submission failed");
       }
 
+      if (statusElement) {
+        statusElement.textContent =
+          "Thank you! Your quotation request has been sent successfully.";
+      }
+
+      quoteForm.reset();
+
     } catch (error) {
-      formStatus.textContent =
-        "We couldn't send your request right now. " +
-        "Please try again or email us directly at " +
-        "jettfireprinting@gmail.com.";
+      console.error("Web3Forms submission error:", error);
 
-      formStatus.classList.add("error");
+      if (statusElement) {
+        statusElement.textContent =
+          "Unable to send your request. Please try again.";
+      }
 
-      console.error("Formspree error:", error);
     } finally {
       submitButton.disabled = false;
-      submitButton.innerHTML =
-        'Send Quotation Request <span>↗</span>';
     }
   });
 }

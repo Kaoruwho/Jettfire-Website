@@ -355,7 +355,34 @@
           <div class="contact-detail"><span class="contact-icon">01</span><div><small>Satellite office</small><strong>Marikina</strong><p style="font-size:11px;color:var(--muted);margin:4px 0 0">#137 A. Bonifacio, Barangka, Marikina City</p></div></div>
           <div class="contact-detail"><span class="contact-icon">02</span><div><small>Production warehouse</small><strong>Dinalupihan, Bataan</strong><p style="font-size:11px;color:var(--muted);margin:4px 0 0">#40 Torres Bugauen, Dinalupihan, Bataan</p></div></div>
         </div>
-        <form class="quote-form" id="quoteForm" action="https://formspree.io/f/mdearlve" method="POST">
+        <formclass="quote-form" id="quoteForm" action="https://api.web3forms.com/submit" method="POST">
+        <input
+          type="hidden"
+          name="access_key"
+          value="3f4e6c8d-9f94-4731-bc7d-b60e96e0a71b"
+        >
+
+        <input
+          type="hidden"
+          name="from_name"
+          value="Jettfire Website Quotations"
+        >
+
+        <input
+          type="hidden"
+          name="subject"
+          value="[JETTFIRE] New Quotation Request"
+        >
+
+        <!-- Spam protection -->
+        <input
+          type="checkbox"
+          name="botcheck"
+          style="display: none;"
+          tabindex="-1"
+          autocomplete="off"
+        >
+
           <h3>Request a project quote</h3>
         <p>
           Tell us about your project, including the size,
