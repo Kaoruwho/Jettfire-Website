@@ -24,6 +24,16 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 14px 19px; border-radius: 7px; font-size: 13px; font-weight: 750; border: 1px solid transparent; transition: .2s ease; cursor: pointer; }
     .btn-red { color: #fff; background: var(--red); }
     .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+    /* Button arrow micro-interaction */
+    .btn > span {
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+
+    .btn:hover > span,
+    .btn:focus-visible > span {
+      transform: translate(3px, -3px);
+    }
     .btn-light { color: var(--ink); background: var(--white); border-color: var(--line); }
     .btn-light:hover { border-color: var(--ink); }
     .btn-outline { color: #fff; border-color: #5b5d61; background: transparent; }
@@ -35,7 +45,32 @@
     .nav { display: flex; align-items: center; justify-content: space-between; min-height: 78px; gap: 24px; } 
     .navlinks { display: flex; align-items: center; gap: 28px; font-size: 12px; font-weight: 700; color: #e0e0e1; }
     .navlinks a:hover { color: white; }
-    .nav-cta { padding: 12px 15px; background: var(--red); border-radius: 6px; color: white !important; }
+    .nav-cta { padding: 12px 15px; background: var(--red); border-radius: 6px; color: white !important; 
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;}
+    .nav-cta:hover,
+    .nav-cta:focus-visible {
+      background: var(--red-dark);
+      color: white !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(200, 0, 0, 0.18);
+    }
+    .nav-cta span {
+      display: inline-block;
+      margin-left: 8px;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-cta:hover span,
+    .nav-cta:focus-visible span {
+      transform: translate(3px, -3px);
+    }
     .menu-toggle { display: none; background: none; border: 0; color: white; font-size: 25px; cursor: pointer; }
     .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; min-height: 510px; align-items: center; }
     .hero-copy { position: relative; z-index: 2; padding: 24px 0; }
@@ -224,11 +259,13 @@
       font-size: 24px;
       color: var(--ink);
 
-      transition: transform .2s ease;
+      transition: transform .25s ease, color 0.25s ease;
     }
 
-    .service-arrow:hover {
-      transform: translate(3px, -3px);
+    .service-card:hover .service-arrow,
+    .service-card:focus-visible .service-arrow {
+      transform: translate(4px, -4px);
+      color: var(--red);
     }
     .service-card--acrylic::before {
       background-image: url("../images/services/acrylic.png");
@@ -339,6 +376,7 @@
       padding: 18px;
       text-align: left;
       pointer-events: none;
+      transition: transform 0.3s ease;
     }
 
         /* Category label */
@@ -372,6 +410,11 @@
       color: #ffffff;
       font-weight: 800;
       text-shadow: 0 1px 4px rgba(0,0,0,.5);
+    }
+    /* Lift project captions on hover */
+    .portfolio .project:hover .project-info,
+    .portfolio .project:focus-visible .project-info {
+      transform: translateY(-5px);
     }
     /* Hover and keyboard focus */
     .project:hover img,
@@ -507,12 +550,20 @@
 
       object-fit: contain;
       object-position: center;
+      transition: transform 0.35s ease;
     }
 
     /* Subtle Jettfire red hover accent */
     .client-logo:hover {
       transform: translateY(-3px);
       border-color: var(--red);
+    }
+
+    .client-logo:hover img {
+      transform: scale(1.15  );
+    }
+    .client-logo.js-reveal.is-visible:hover {
+      transform: translateY(-3px);
     }
 
     /* Tablet */
@@ -815,6 +866,76 @@ header {
   opacity: 1;
 }
 
+/* =====================================
+   HERO SLIDESHOW PROGRESS
+===================================== */
+
+.hero-progress {
+  position: absolute;
+  right: 20px;
+  bottom: 48px;
+  z-index: 4;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: min(240px, 52%);
+  padding: 10px 12px;
+
+  background: rgba(20, 20, 20, 0.65);
+  border-radius: 5px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-progress__bars {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  flex: 1;
+}
+
+.hero-progress__bar {
+  position: relative;
+  height: 3px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+}
+
+.hero-progress__bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: var(--red);
+
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.hero-progress__bar.is-active::after {
+  animation: hero-progress-fill 3.5s linear forwards;
+}
+
+.hero-progress__counter {
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@keyframes hero-progress-fill {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @media (max-width: 768px) {
 
   .hero::after {
@@ -852,7 +973,20 @@ header {
   .hero-visual .hero-tag{
     left: 0;
   }
+
+  .hero-progress {
+    right: 12px;
+    bottom: 40px;
+    width: min(210px, 65%);
+    padding: 8px 10px;
+  }
+
+  .hero-progress__counter {
+    font-size: 9px;
+  }
 }
+
+
 
 @media (max-width: 900px) {
   .service-grid {
@@ -1383,4 +1517,57 @@ footer::before {
 /* Keep the arrow decorative */
 .service-arrow {
   pointer-events: none;
+}
+
+/* =====================================
+   SCROLL REVEAL ANIMATIONS
+===================================== */
+
+.js-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.js-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.service-card.js-reveal.is-visible:hover,
+.service-card.js-reveal.is-visible:focus-visible {
+  transform: translateY(-4px);
+}
+
+/* Delays for cards and gallery items */
+.js-reveal[data-reveal-delay="1"] {
+  transition-delay: 0.08s;
+}
+
+.js-reveal[data-reveal-delay="2"] {
+  transition-delay: 0.16s;
+}
+
+.js-reveal[data-reveal-delay="3"] {
+  transition-delay: 0.24s;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal,
+  .js-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .service-arrow,
+  .portfolio .project .project-info,
+  .btn > span {
+    transition: none;
+  }
+  .client-logo.js-reveal.is-visible:hover {
+    transform: translateY(-3px);
+  }
 }

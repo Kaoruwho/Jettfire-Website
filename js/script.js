@@ -17,9 +17,38 @@ const heroImageSlides = document.querySelectorAll(
   ".hero-image-slide"
 );
 
+const heroProgressBars = document.querySelectorAll(
+  ".hero-progress__bar"
+);
+
+const heroProgressCounter = document.querySelector(
+  ".hero-progress__counter"
+);
+
 let currentHeroImage = 0;
 
+function updateHeroProgress(index) {
+  heroProgressBars.forEach((bar, barIndex) => {
+    bar.classList.remove("is-active");
+
+    if (barIndex === index) {
+      // Restart the progress animation
+      void bar.offsetWidth;
+      bar.classList.add("is-active");
+    }
+  });
+
+  if (heroProgressCounter) {
+    const current = String(index + 1).padStart(2, "0");
+    const total = String(heroImageSlides.length).padStart(2, "0");
+
+    heroProgressCounter.textContent = `${current} / ${total}`;
+  }
+}
+
 if (heroImageSlides.length > 1) {
+  updateHeroProgress(currentHeroImage);
+
   setInterval(() => {
     heroImageSlides[currentHeroImage].classList.remove("active");
 
@@ -27,6 +56,8 @@ if (heroImageSlides.length > 1) {
       (currentHeroImage + 1) % heroImageSlides.length;
 
     heroImageSlides[currentHeroImage].classList.add("active");
+
+    updateHeroProgress(currentHeroImage);
   }, 3500);
 }
 
@@ -266,3 +297,60 @@ document.querySelectorAll(".service-card[data-service]")
     });
 
   });
+
+  /* =====================================
+   SCROLL REVEAL ANIMATIONS
+===================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  const selectors = [
+    ".services .section-head",
+    ".service-grid .service-card",
+    ".portfolio .section-head",
+    ".portfolio-grid .project",
+    ".clients-heading",
+    ".client-logo-grid .client-logo",
+    ".contact-copy",
+    ".quote-form"
+  ];
+
+  const elements = document.querySelectorAll(
+    selectors.join(", ")
+  );
+
+  const observer = new IntersectionObserver(
+    (entries, activeObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add("is-visible");
+        activeObserver.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.05,
+      rootMargin: "0px 0px -30px 0px"
+    }
+  );
+
+  elements.forEach((element) => {
+    element.classList.add("js-reveal");
+
+    if (element.matches(".service-card, .project, .client-logo")) {
+      const siblings = Array.from(element.parentElement.children);
+      const index = siblings.indexOf(element);
+
+      element.dataset.revealDelay = String(index % 4);
+    }
+
+    observer.observe(element);
+  });
+});
