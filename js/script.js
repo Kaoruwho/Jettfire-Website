@@ -90,11 +90,22 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let previousFocus = null;
 
+  function getVisibleProjects() {
+    return Array.from(projects).filter(
+      (project) => !project.hidden
+    );
+  }
+
   /* Display selected image */
   function showImage(index) {
-    currentIndex = (index + projects.length) % projects.length;
+    const visibleProjects = getVisibleProjects();
 
-    const project = projects[currentIndex];
+    if (visibleProjects.length === 0) return;
+
+    currentIndex =
+      (index + visibleProjects.length) % visibleProjects.length;
+
+    const project = visibleProjects[currentIndex];
     const image = project.querySelector("img");
 
     lightboxImage.src = image.currentSrc || image.src;
@@ -104,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lightboxCategory.textContent = project.dataset.category || "";
 
     lightboxCounter.textContent =
-      `${currentIndex + 1} / ${projects.length}`;
+      `${currentIndex + 1} / ${visibleProjects.length}`;
   }
 
   /* Open lightbox */
@@ -129,9 +140,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* Click portfolio images */
-  projects.forEach((project, index) => {
+  projects.forEach((project) => {
     project.addEventListener("click", () => {
-      openLightbox(index);
+      const visibleProjects = getVisibleProjects();
+      const index = visibleProjects.indexOf(project);
+
+      if (index !== -1) {
+        openLightbox(index);
+      }
     });
   });
 
@@ -183,6 +199,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+});
+
+/* =====================================
+   PORTFOLIO CATEGORY FILTERING
+===================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const filterButtons = document.querySelectorAll(
+    ".portfolio-filter"
+  );
+
+  const projects = document.querySelectorAll(
+    ".portfolio-grid .project"
+  );
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const selectedFilter = button.dataset.filter;
+
+      filterButtons.forEach((filterButton) => {
+        const active = filterButton === button;
+
+        filterButton.classList.toggle("is-active", active);
+        filterButton.setAttribute("aria-pressed", String(active));
+      });
+
+      projects.forEach((project) => {
+        const matches =
+          selectedFilter === "all" ||
+          project.dataset.group === selectedFilter;
+
+        project.hidden = !matches;
+      });
+
+      const portfolioGrid = document.querySelector(".portfolio-grid");
+      if (portfolioGrid) {
+        const isFiltered = selectedFilter !== "all";
+
+        portfolioGrid.classList.toggle("is-filtered", isFiltered);
+
+        projects.forEach((project) => {
+          project.classList.remove("is-filter-feature");
+        });
+
+        if (isFiltered) {
+          const firstVisibleProject = Array.from(projects).find(
+            (project) => !project.hidden
+          );
+
+          if (firstVisibleProject) {
+            firstVisibleProject.classList.add("is-filter-feature");
+          }
+        }
+      }
+    });
+  });
 });
 
 /* =====================================
@@ -354,3 +426,20 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(element);
   });
 });
+
+/* =====================================
+   QUOTATION DEADLINE DATE
+===================================== */
+
+const deadlineInput = document.getElementById("deadline");
+
+if (deadlineInput) {
+  const today = new Date();
+  const localDate = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0")
+  ].join("-");
+
+  deadlineInput.min = localDate;
+}

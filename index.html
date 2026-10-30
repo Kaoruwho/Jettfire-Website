@@ -201,114 +201,188 @@
   </div>
 </section>
 
-<section class="portfolio" id="portfolio">
-  <div class="wrap">
+  <section class="portfolio" id="portfolio">
+    <div class="wrap">
 
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Selected Projects</span>
-        <h2>Our work speaks<br>for itself.</h2>
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Selected Projects</span>
+          <h2>Our work speaks<br>for itself.</h2>
+        </div>
+        <p>
+          Explore a selection of printed products,
+          signage, and custom creations produced
+          for different needs and occasions.
+        </p>
       </div>
-      <p>
-        Explore a selection of printed products,
-        signage, and custom creations produced
-        for different needs and occasions.
-      </p>
-    </div>
 
-    <div class="portfolio-grid">
+      <div class="portfolio-filters" role="group" aria-label="Filter portfolio projects">
+    <button type="button" class="portfolio-filter is-active" data-filter="all" aria-pressed="true">
+      All Projects
+    </button>
 
-      <button class="project" type="button"
-              data-title="Custom Packaging"
-              data-category="Print & Packaging"
-              aria-label="View custom packaging">
-        <img src="images/83.png"
-             alt="Custom printed pastry packaging boxes"
-             loading="lazy">
-        <div class="project-info">
-          <span>Print & Packaging</span>
-          <h3>Custom Packaging</h3>
+    <button type="button" class="portfolio-filter" data-filter="print" aria-pressed="false">
+      Printing &amp; Packaging
+    </button>
+
+    <button type="button" class="portfolio-filter" data-filter="acrylic" aria-pressed="false">
+      Acrylic &amp; Signage
+    </button>
+  </div>
+    
+        <div class="portfolio-grid">
+
+          <!-- 01: Print & Packaging -->
+          <button class="project" type="button"
+                  data-title="Luxury Branded Shopping Bag"
+                  data-category="Printing & Packaging"
+                  data-group="print"
+                  aria-label="View luxury branded shopping bag">
+            <img src="images/portfolio/print_luxury_shopping_bag.png"
+                alt="Luxury branded botanical shopping bag"
+                loading="lazy">
+            <div class="project-info">
+              <span>Printing & Packaging</span>
+              <h3>Branded Shopping Bags</h3>
+            </div>
+          </button>
+
+          <!-- 02: Print & Packaging -->
+          <button class="project" type="button"
+                  data-title="Custom Bakery Box"
+                  data-category="Printing & Packaging"
+                  data-group="print"
+                  aria-label="View custom bakery box">
+            <img src="images/portfolio/print_custom_bakery_box.png"
+                alt="Custom printed bakery packaging box"
+                loading="lazy">
+            <div class="project-info">
+              <span>Printing & Packaging</span>
+              <h3>Custom Bakery Box</h3>
+            </div>
+          </button>
+
+          <!-- 03: Print & Packaging -->
+          <button class="project" type="button"
+                  data-title="Premium Business Cards"
+                  data-category="Printing & Packaging"
+                  data-group="print"
+                  aria-label="View premium business cards">
+            <img src="images/portfolio/print_premium_business_cards.png"
+                alt="Premium printed business cards"
+                loading="lazy">
+            <div class="project-info">
+              <span>Printing & Packaging</span>
+              <h3>Premium Business Cards</h3>
+            </div>
+          </button>
+
+          <!-- 04: Print & Packaging -->
+          <button class="project" type="button"
+                  data-title="Custom Printed Stickers"
+                  data-category="Printing & Packaging"
+                  data-group="print"
+                  aria-label="View custom printed stickers">
+            <img src="images/portfolio/print_custom_sticker_roll.png"
+                alt="Roll of custom printed product stickers"
+                loading="lazy">
+            <div class="project-info">
+              <span>Printing & Packaging</span>
+              <h3>Custom Printed Stickers</h3>
+            </div>
+          </button>
+
+          <!-- 05: Print & Packaging -->
+          <button class="project" type="button"
+                  data-title="Product Bottle Labels"
+                  data-category="Printing & Packaging"
+                  data-group="print"
+                  aria-label="View product bottle labels">
+            <img src="images/portfolio/print_juice_bottle_labels.png"
+                alt="Colorful custom printed juice bottle labels"
+                loading="lazy">
+            <div class="project-info">
+              <span>Printing & Packaging</span>
+              <h3>Product Bottle Labels</h3>
+            </div>
+          </button>
+
+          <!-- 06: Acrylic & Signage -->
+          <button class="project" type="button"
+                  data-title="Acrylic Conference Room Sign"
+                  data-category="Acrylic & Signage"
+                  data-group="acrylic"
+                  aria-label="View acrylic conference room sign">
+            <img src="images/portfolio/acrylic_conference_room_sign.png"
+                alt="Transparent acrylic conference room sign"
+                loading="lazy">
+            <div class="project-info">
+              <span>Acrylic & Signage</span>
+              <h3>Conference Room Signage</h3>
+            </div>
+          </button>
+
+          <!-- 07: Acrylic & Signage -->
+          <button class="project" type="button"
+                  data-title="Acrylic Recognition Award"
+                  data-category="Acrylic & Signage"
+                  data-group="acrylic"
+                  aria-label="View acrylic recognition award">
+            <img src="images/portfolio/acrylic_recognition_award.png"
+                alt="Clear acrylic recognition award"
+                loading="lazy">
+            <div class="project-info">
+              <span>Acrylic & Signage</span>
+              <h3>Recognition Award</h3>
+            </div>
+          </button>
+
+          <!-- 08: Acrylic & Signage -->
+          <button class="project" type="button"
+                  data-title="Illuminated Wall Signage"
+                  data-category="Acrylic & Signage"
+                  data-group="acrylic"
+                  aria-label="View illuminated wall signage">
+            <img src="images/portfolio/signage_illuminated_wall_logo.png"
+                alt="Illuminated business logo mounted on a wall"
+                loading="lazy">
+            <div class="project-info">
+              <span>Acrylic & Signage</span>
+              <h3>Illuminated Wall Signage</h3>
+            </div>
+          </button>
+
+          <!-- 09: Acrylic & Signage -->
+          <button class="project" type="button"
+                  data-title="Acrylic Desktop Nameplate"
+                  data-category="Acrylic & Signage"
+                  data-group="acrylic"
+                  aria-label="View acrylic desktop nameplate">
+            <img src="images/portfolio/acrylic_desktop_nameplate.png"
+                alt="Personalized clear acrylic desktop nameplate"
+                loading="lazy">
+            <div class="project-info">
+              <span>Acrylic & Signage</span>
+              <h3>Desktop Nameplate</h3>
+            </div>
+          </button>
+
+          <!-- 10: Acrylic & Signage -->
+          <button class="project" type="button"
+                  data-title="Acrylic Room Number Sign"
+                  data-category="Acrylic & Signage"
+                  data-group="acrylic"
+                  aria-label="View acrylic room number sign">
+            <img src="images/portfolio/acrylic_room_number_sign.png"
+                alt="Wall-mounted acrylic room number signage"
+                loading="lazy">
+            <div class="project-info">
+              <span>Acrylic & Signage</span>
+              <h3>Room Number Signage</h3>
+            </div>
+          </button>
+
         </div>
-      </button>
-
-      <button class="project" type="button"
-              data-title="Branded Shopping Bags"
-              data-category="Print & Packaging"
-              aria-label="View branded shopping bags">
-        <img src="images/82.jpg"
-             alt="Green branded shopping bag"
-             loading="lazy">
-        <div class="project-info">
-          <span>Print & Packaging</span>
-          <h3>Branded Shopping Bags</h3>
-        </div>
-      </button>
-
-      <button class="project" type="button"
-              data-title="Acrylic Keepsakes"
-              data-category="Acrylic Products"
-              aria-label="View acrylic keepsakes">
-        <img src="images/30.jpg"
-             alt="Personalized acrylic keepsake"
-             loading="lazy">
-        <div class="project-info">
-          <span>Acrylic Products</span>
-          <h3>Acrylic Keepsakes</h3>
-        </div>
-      </button>
-
-      <button class="project" type="button"
-              data-title="Business Cards"
-              data-category="Custom Printing"
-              aria-label="View business cards">
-        <img src="images/50.jpg"
-             alt="Custom printed business cards"
-             loading="lazy">
-        <div class="project-info">
-          <span>Custom Printing</span>
-          <h3>Business Cards</h3>
-        </div>
-      </button>
-
-      <button class="project" type="button"
-              data-title="Room Number Signage"
-              data-category="Signage"
-              aria-label="View room number signage">
-        <img src="images/16.jpg"
-             alt="Custom room number signage plates"
-             loading="lazy">
-        <div class="project-info">
-          <span>Signage</span>
-          <h3>Room Number Signage</h3>
-        </div>
-      </button>
-
-      <button class="project" type="button"
-              data-title="Pastry Packaging"
-              data-category="Print & Packaging"
-              aria-label="View pastry packaging">
-        <img src="images/77.jpg"
-             alt="Printed pastry packaging boxes"
-             loading="lazy">
-        <div class="project-info">
-          <span>Print & Packaging</span>
-          <h3>Pastry Packaging</h3>
-        </div>
-      </button>
-
-      <button class="project" type="button"
-              data-title="Printed Labels"
-              data-category="Custom Printing"
-              aria-label="View printed labels">
-        <img src="images/image(20261019-074747-1).png"
-             alt="Custom printed and die-cut labels"
-             loading="lazy">
-        <div class="project-info">
-          <span>Custom Printing</span>
-          <h3>Printed Labels</h3>
-        </div>
-      </button>
-
     </div>
   </div>
 </section>
@@ -418,6 +492,36 @@
             <div class="field"><label for="company">Company (optional)</label><input id="company" name="company" placeholder="Business name"></div>
             <div class="field"><label for="email">Email address *</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
             <div class="field"><label for="service">Service needed *</label><select id="service" name="service" required><option value="">Choose a service</option><option>UV Acrylic Printing</option><option>Custom Printing & Die-Cut</option><option>Laser Cutting</option><option>Booths & Displays</option><option>Not sure yet</option></select></div>
+            
+            <!-- Additional project specifications -->
+            <div class="field">
+              <label for="quantity">Quantity (optional)</label>
+              <input
+                type="text"
+                id="quantity"
+                name="quantity"
+                placeholder="e.g. 100 pcs"
+              >
+            </div>
+
+            <div class="field">
+              <label for="dimensions">Dimensions (optional)</label>
+              <input
+                type="text"
+                id="dimensions"
+                name="dimensions"
+                placeholder="e.g. 12 x 18 inches"
+              >
+            </div>
+
+            <div class="field full">
+              <label for="deadline">Preferred deadline (optional)</label>
+              <input
+                type="date"
+                id="deadline"
+                name="deadline"
+              >
+            </div>
             <div class="field full"><label for="details">Tell us about your project *</label><textarea id="details" name="details" required placeholder="What do you need printed or produced? Include size, quantity, deadline, or other details if known."></textarea></div>
           </div>
           <p class="form-note">Please don't include confidential information. Reference files can be shared with the team separately.</p>
